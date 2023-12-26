@@ -1,7 +1,53 @@
 ﻿<!-- CheckBalance.cshtml -->
 @model CardHolder
 
-<h2>Check Balance</h2>
-<p>Your Current Balance: $@Model.Balance</p>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-image: url('your-background-image-url.jpg'); /* Add your background image URL here */
+        background-size: cover;
+    }
 
-<a asp-action="MainMenu" asp-route-cardHolderId="@Model.CardHolderId">Back to Main Menu</a>
+    .card {
+        background: rgba(255, 255, 255, 0.9); /* Adjust the alpha value for the desired level of transparency */
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    h2 {
+        color: #007BFF; /* Customize the heading color */
+    }
+
+    p {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    a {
+        display: block;
+        background-color: #28A745; /* Customize the button color */
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+
+        a:hover {
+            background-color: #218838; /* Customize the button hover color */
+        }
+</style>
+
+<div class="card">
+    <h2>Check Balance</h2>
+    <p>Your Current Balance: $@Model.Balance</p>
+    <a asp-action="MainMenu" asp-route-cardHolderId="@Model.CardHolderId">Back to Main Menu</a>
+</div>
