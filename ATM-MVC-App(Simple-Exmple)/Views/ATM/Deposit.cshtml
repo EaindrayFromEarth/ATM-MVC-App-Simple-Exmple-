@@ -1,12 +1,77 @@
 ﻿<!-- Deposit.cshtml -->
 @model CardHolder
 
-<h2>Deposit Money</h2>
-<p>Current Balance: $@Model.Balance</p>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-image: url('https://th.bing.com/th/id/R.a508e9a900db9ea9b1cb15bd1957ace9?rik=kt38KL0Pp44qHg&riu=http%3a%2f%2fhoianfoodtour.com%2fwp-content%2fuploads%2f2014%2f12%2f4.-Automatic-teller-machines.jpg&ehk=IIcNcgJ0znVpCFyGYMDHGMerSTNLYVQhItavEW60SZo%3d&risl=&pid=ImgRaw&r=0'); /* Add your background image URL here */
+        background-size: cover;
+    }
 
-<form asp-action="Deposit" asp-route-cardHolderId="@Model.CardHolderId" method="post">
-    <label for="amount">Enter Amount:</label>
-    <input type="number" id="amount" name="amount" step="0.01" required>
-    <button type="submit">Deposit</button>
-    <span asp-validation-for="Amount"></span>
-</form>
+    .deposit-container {
+        background: rgba(255, 255, 255, 0.9); /* Adjust the alpha value for the desired level of transparency */
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    h2 {
+        color: #007BFF; /* Customize the heading color */
+    }
+
+    p {
+        color: green; /* Customize the current balance color */
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    label {
+        margin-bottom: 10px;
+    }
+
+    input {
+        padding: 8px;
+        margin-bottom: 15px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    button {
+        padding: 10px;
+        background-color: #28a745; /* Customize the button color */
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    span {
+        color: red;
+    }
+</style>
+
+<div class="deposit-container">
+    <h2>Deposit Money</h2>
+    <p>Current Balance: $@Model.Balance</p>
+
+    <form asp-action="Deposit" asp-route-cardHolderId="@Model.CardHolderId" method="post">
+        <label for="amount">Enter Amount:</label>
+        <input type="number" id="amount" name="amount" step="0.01" required>
+        <button type="submit">Deposit</button>
+        <span asp-validation-for="Amount"></span>
+    </form>
+</div>
