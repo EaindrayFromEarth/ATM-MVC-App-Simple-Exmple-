@@ -1,12 +1,83 @@
 ﻿<!-- MainMenu.cshtml -->
 @model CardHolder
 
-<h2>Welcome, @Model.FirstName @Model.LastName!</h2>
-<p>Balance: $@Model.Balance</p>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-image: url('https://cdn.indesignlive.com/wp-content/uploads/1.Featureimage.jpg'); /* Add your background image URL here */
+        background-size: cover;
+    }
 
-<ul>
-    <li><a asp-action="Deposit" asp-route-cardHolderId="@Model.CardHolderId">Deposit</a></li>
-    <li><a asp-action="Withdraw" asp-route-cardHolderId="@Model.CardHolderId">Withdraw</a></li>
-    <li><a asp-action="CheckBalance" asp-route-cardHolderId="@Model.CardHolderId">Check Balance</a></li>
-    <li><a asp-action="Exit">Exit</a></li>
-</ul>
+    .main-menu-container {
+        display: flex;
+        flex-direction: column;
+        background: rgba(255, 255, 255, 0.5); /* Adjust the alpha value for the desired level of transparency */
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    h2 {
+        color: #007BFF; /* Customize the heading color */
+    }
+
+    p {
+        color: green; /* Customize the current balance color */
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    li {
+        margin-bottom: 15px;
+    }
+
+    a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        padding: 10px;
+        background-color: #28a745; /* Customize the button color */
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .icon {
+        margin-right: 10px;
+        font-size: 20px;
+    }
+</style>
+
+<div class="main-menu-container">
+    <h2>Welcome, @Model.FirstName @Model.LastName!</h2>
+    <p>Balance: $@Model.Balance</p>
+
+    <div class="button-container">
+        <a asp-action="Deposit" asp-route-cardHolderId="@Model.CardHolderId"><i class="icon fas fa-money-bill-wave"></i> Deposit</a>
+        <a asp-action="Withdraw" asp-route-cardHolderId="@Model.CardHolderId"><i class="icon fas fa-money-bill-wave"></i> Withdraw</a>
+    </div>
+
+    <ul>
+        <li><a asp-action="CheckBalance" asp-route-cardHolderId="@Model.CardHolderId"><i class="icon fas fa-balance-scale"></i> Check Balance</a></li>
+        <li><a asp-action="Exit"><i class="icon fas fa-sign-out-alt"></i> Exit</a></li>
+    </ul>
+</div>
