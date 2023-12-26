@@ -156,7 +156,7 @@ public class ATMController : Controller
 
     public IActionResult Exit()
     {
-        return RedirectToAction("Index", "Home"); // Redirect to home or any other desired page
+        return RedirectToAction("EnterCardNumber"); // Redirect to home or any other desired page
     }
 
 }
