@@ -1,9 +1,23 @@
-﻿<!-- EnterPIN.cshtml -->
+﻿@* <!-- EnterPIN.cshtml -->
 @model CardHolder
 
 <form asp-action="EnterPIN" method="post">
     <label for="pinNumber">Enter PIN Number:</label>
     <input type="text" id="pinNumber" name="pinNumber" required>
+    <button type="submit">Submit</button>
+    <span asp-validation-for="Pinnumber"></span>
+</form>
+ *@
+
+<!-- EnterPin.cshtml -->
+@model CardHolder
+
+<h2>Welcome, @Model.FirstName @Model.LastName!</h2>
+<p>Enter Your PIN Number:</p>
+
+<form asp-action="ValidatePin" method="post">
+    <label for="pin">PIN:</label>
+    <input type="password" id="pin" name="pin" maxlength="4" required>
     <button type="submit">Submit</button>
     <span asp-validation-for="Pinnumber"></span>
 </form>

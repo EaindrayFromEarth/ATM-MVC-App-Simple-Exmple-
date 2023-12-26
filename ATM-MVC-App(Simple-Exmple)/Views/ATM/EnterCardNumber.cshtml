@@ -1,9 +1,64 @@
 ﻿<!-- EnterCardNumber.cshtml -->
 @model CardHolder
 
-<form asp-action="EnterCardNumber" method="post">
-    <label for="cardNumber">Enter Card Number:</label>
-    <input type="text" id="cardNumber" name="cardNumber" required>
-    <button type="submit">Submit</button>
-    <span asp-validation-for="CardNumber"></span>
-</form>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-image: url('https://cdn.indesignlive.com/wp-content/uploads/1.Featureimage.jpg'); /* Add your background image URL here */
+        background-size: cover;
+    }
+
+    .glass-card {
+        background: rgba(255, 255, 255, 0.5); /* Adjust the alpha value for the desired level of transparency */
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        text-align: center;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    label {
+        margin-bottom: 10px;
+    }
+
+    input {
+        padding: 8px;
+        margin-bottom: 15px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    button {
+        padding: 10px;
+        background-color: #007BFF; /* Customize the button color */
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    span {
+        color: red;
+    }
+</style>
+
+<div class="glass-card">
+    <form asp-action="EnterCardNumber" method="post">
+        <label for="cardNumber">Enter Card Number:</label>
+        <input type="text" id="cardNumber" name="cardNumber" required>
+        <button type="submit">Submit</button>
+        <span asp-validation-for="CardNumber"></span>
+    </form>
+</div>

@@ -1,11 +1,12 @@
 ﻿<!-- Deposit.cshtml -->
 @model CardHolder
 
+<h2>Deposit Money</h2>
 <p>Current Balance: $@Model.Balance</p>
 
-<form asp-action="Deposit" method="post">
-    <label for="amount">Enter deposit amount:</label>
-    <input type="number" id="amount" name="amount" required>
-    <button type="submit">Submit</button>
+<form asp-action="Deposit" asp-route-cardHolderId="@Model.CardHolderId" method="post">
+    <label for="amount">Enter Amount:</label>
+    <input type="number" id="amount" name="amount" step="0.01" required>
+    <button type="submit">Deposit</button>
     <span asp-validation-for="Amount"></span>
 </form>

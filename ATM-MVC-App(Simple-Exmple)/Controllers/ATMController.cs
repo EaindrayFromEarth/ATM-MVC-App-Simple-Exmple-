@@ -28,27 +28,53 @@ public class ATMController : Controller
             return View();
         }
 
-        return RedirectToAction("EnterPIN", new { cardHolder.CardHolderId });
+        return RedirectToAction("MainMenu", new { cardHolder.CardHolderId });
     }
 
-    public IActionResult EnterPIN(int cardHolderId)
-    {
-        return View();
-    }
-
-    [HttpPost]
-    public IActionResult EnterPIN(int cardHolderId, string pinNumber)
+    public IActionResult EnterPin(int cardHolderId)
     {
         var cardHolder = _context.CardHolders.Find(cardHolderId);
 
-        if (cardHolder == null || cardHolder.Pinnumber != pinNumber)
+        return View(cardHolder);
+    }
+
+    [HttpPost]
+    public IActionResult ValidatePin(int cardHolderId, string pin)
+    {
+        var cardHolder = _context.CardHolders.Find(cardHolderId);
+
+        if (cardHolder.Pinnumber == pin)
         {
-            ModelState.AddModelError("PINNumber", "Invalid PIN Number");
+            // PIN is valid, navigate to the main menu
+            return RedirectToAction("MainMenu", new { cardHolderId });
+        }
+        else
+        {
+            // Invalid PIN, show error message
+            ModelState.AddModelError("Pin", "Invalid PIN Number");
+            return View("EnterPin", cardHolder);
+        }
+    }
+
+
+    /*    public IActionResult EnterPIN(int cardHolderId)
+        {
             return View();
         }
 
-        return RedirectToAction("MainMenu", new { cardHolderId });
-    }
+        [HttpPost]
+        public IActionResult EnterPIN(int cardHolderId, string pinNumber)
+        {
+            var cardHolder = _context.CardHolders.Find(cardHolderId);
+
+            if (cardHolder == null || cardHolder.Pinnumber != pinNumber)
+            {
+                ModelState.AddModelError("PINNumber", "Invalid PIN Number");
+                return View();
+            }
+
+            return RedirectToAction("MainMenu", new { cardHolderId });
+        }*/
 
     public IActionResult MainMenu(int cardHolderId)
     {
@@ -57,5 +83,80 @@ public class ATMController : Controller
         return View(cardHolder);
     }
 
+
+    public IActionResult Deposit(int cardHolderId)
+    {
+        var cardHolder = _context.CardHolders.Find(cardHolderId);
+        return View(cardHolder);
+    }
+
+    [HttpPost]
+    public IActionResult Deposit(int cardHolderId, decimal amount)
+    {
+        if (amount <= 0)
+        {
+            ModelState.AddModelError("Amount", "Please enter a valid amount");
+            return View(_context.CardHolders.Find(cardHolderId));
+        }
+
+        var cardHolder = _context.CardHolders.Find(cardHolderId);
+        cardHolder.Balance += amount;
+        _context.SaveChanges();
+
+        return RedirectToAction("MainMenu", new { cardHolderId });
+    }
+
+    public IActionResult Withdraw(int cardHolderId)
+    {
+        var cardHolder = _context.CardHolders.Find(cardHolderId);
+
+        if (cardHolder == null)
+        {
+            return RedirectToAction("EnterCardNumber");
+        }
+
+        return View(cardHolder);
+    }
+
+    [HttpPost]
+    public IActionResult Withdraw(int cardHolderId, decimal amount)
+    {
+        var cardHolder = _context.CardHolders.Find(cardHolderId);
+
+        if (cardHolder == null)
+        {
+            return RedirectToAction("EnterCardNumber");
+        }
+
+        if (amount <= 0)
+        {
+            ModelState.AddModelError("Amount", "Withdrawal amount must be greater than zero.");
+            return View(cardHolder);
+        }
+
+        if (amount > cardHolder.Balance)
+        {
+            ModelState.AddModelError("Amount", "Insufficient funds.");
+            return View(cardHolder);
+        }
+
+        // Update the balance after withdrawal
+        cardHolder.Balance -= amount;
+        _context.SaveChanges();
+
+        return RedirectToAction("MainMenu", new { cardHolderId });
+    }
+
+    public IActionResult CheckBalance(int cardHolderId)
+    {
+        var cardHolder = _context.CardHolders.Find(cardHolderId);
+
+        return View(cardHolder);
+    }
+
+    public IActionResult Exit()
+    {
+        return RedirectToAction("Index", "Home"); // Redirect to home or any other desired page
+    }
 
 }
