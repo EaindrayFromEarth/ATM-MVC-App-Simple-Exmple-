@@ -1,0 +1,7 @@
+﻿<!-- CheckBalance.cshtml -->
+@model CardHolder
+
+<h2>Check Balance</h2>
+<p>Your Current Balance: $@Model.Balance</p>
+
+<a asp-action="MainMenu" asp-route-cardHolderId="@Model.CardHolderId">Back to Main Menu</a>

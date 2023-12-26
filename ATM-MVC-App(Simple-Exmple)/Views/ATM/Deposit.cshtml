@@ -1,0 +1,11 @@
+﻿<!-- Deposit.cshtml -->
+@model CardHolder
+
+<p>Current Balance: $@Model.Balance</p>
+
+<form asp-action="Deposit" method="post">
+    <label for="amount">Enter deposit amount:</label>
+    <input type="number" id="amount" name="amount" required>
+    <button type="submit">Submit</button>
+    <span asp-validation-for="Amount"></span>
+</form>

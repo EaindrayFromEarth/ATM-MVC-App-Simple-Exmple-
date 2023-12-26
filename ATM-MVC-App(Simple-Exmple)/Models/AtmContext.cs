@@ -27,6 +27,7 @@ public partial class AtmContext : DbContext
         {
             entity.HasKey(e => e.CardHolderId).HasName("PK__CardHold__05A1446BF5BB3E97");
 
+            entity.Property(e => e.Amount).HasColumnType("decimal(18, 0)");
             entity.Property(e => e.Balance).HasColumnType("decimal(10, 2)");
             entity.Property(e => e.CardNumber)
                 .HasMaxLength(16)

@@ -1,0 +1,11 @@
+﻿<!-- Withdraw.cshtml -->
+@model CardHolder
+
+<p>Current Balance: $@Model.Balance</p>
+
+<form asp-action="Withdraw" method="post">
+    <label for="amount">Enter withdrawal amount:</label>
+    <input type="number" id="amount" name="amount" required>
+    <button type="submit">Submit</button>
+    <span asp-validation-for="Amount"></span>
+</form>

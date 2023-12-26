@@ -20,7 +20,7 @@ public class ATMController : Controller
     [HttpPost]
     public IActionResult EnterCardNumber(string cardNumber)
     {
-        var cardHolder = _context.CardHolders.SingleOrDefault(ch => ch.CardNumber == cardNumber);
+        var cardHolder = _context.CardHolders.FirstOrDefault(ch => ch.CardNumber == cardNumber);
 
         if (cardHolder == null)
         {
