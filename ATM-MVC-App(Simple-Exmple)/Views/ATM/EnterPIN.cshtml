@@ -1,0 +1,9 @@
+﻿<!-- EnterPIN.cshtml -->
+@model CardHolder
+
+<form asp-action="EnterPIN" method="post">
+    <label for="pinNumber">Enter PIN Number:</label>
+    <input type="text" id="pinNumber" name="pinNumber" required>
+    <button type="submit">Submit</button>
+    <span asp-validation-for="Pinnumber"></span>
+</form>

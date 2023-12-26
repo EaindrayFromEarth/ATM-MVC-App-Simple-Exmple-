@@ -1,0 +1,12 @@
+﻿<!-- MainMenu.cshtml -->
+@model CardHolder
+
+<h2>Welcome, @Model.FirstName @Model.LastName!</h2>
+<p>Balance: $@Model.Balance</p>
+
+<ul>
+    <li><a asp-action="Deposit" asp-route-cardHolderId="@Model.CardHolderId">Deposit</a></li>
+    <li><a asp-action="Withdraw" asp-route-cardHolderId="@Model.CardHolderId">Withdraw</a></li>
+    <li><a asp-action="CheckBalance" asp-route-cardHolderId="@Model.CardHolderId">Check Balance</a></li>
+    <li><a asp-action="Exit">Exit</a></li>
+</ul>

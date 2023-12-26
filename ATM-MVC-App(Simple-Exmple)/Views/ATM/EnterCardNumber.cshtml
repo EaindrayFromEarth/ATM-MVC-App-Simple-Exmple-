@@ -1,0 +1,9 @@
+﻿<!-- EnterCardNumber.cshtml -->
+@model CardHolder
+
+<form asp-action="EnterCardNumber" method="post">
+    <label for="cardNumber">Enter Card Number:</label>
+    <input type="text" id="cardNumber" name="cardNumber" required>
+    <button type="submit">Submit</button>
+    <span asp-validation-for="CardNumber"></span>
+</form>
