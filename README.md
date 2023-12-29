@@ -15,6 +15,7 @@ CREATE TABLE CardHolders (
     CardNumber VARCHAR(16) NOT NULL,
     PINNumber VARCHAR(4) NOT NULL,
     Balance DECIMAL(10, 2) NOT NULL
+    Amount DECIMAL(10, 2) NOT NULL
 );
 
 -- Insert sample data
