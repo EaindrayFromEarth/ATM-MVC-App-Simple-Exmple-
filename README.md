@@ -1,6 +1,7 @@
 # Following This Video 
+# How To Code An ATM Console App In C# | Programming Tutorial For Beginners | Visual Studio 2022
 
-[![Video Image](https://img.youtube.com/vi/<qBI7Qnz9Zho>/maxresdefault.jpg)](https://www.youtube.com/watch?v=<qBI7Qnz9Zho>)
+[![Video thumbnail](https://img.youtube.com/vi/qBI7Qnz9Zho/maxresdefault.jpg)](https://www.youtube.com/watch?v=qBI7Qnz9Zho)
 
 https://youtu.be/qBI7Qnz9Zho?si=hxw-6c68G8LCVzbn
 
