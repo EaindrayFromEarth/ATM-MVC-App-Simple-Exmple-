@@ -63,6 +63,8 @@
     }
 </style>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <div class="card">
     <h2>Withdrawal</h2>
 
@@ -75,4 +77,26 @@
         <a asp-action="MainMenu" asp-route-cardHolderId="@Model.CardHolderId">Back to Main Menu</a>
         <span asp-validation-for="Amount"></span>
     </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var form = document.querySelector('form');
+
+            form.addEventListener('submit', function (e) {
+                var withdrawalAmount = parseFloat(document.getElementById('amount').value);
+                var balance = parseFloat('@Model.Balance');
+
+                if (withdrawalAmount > balance) {
+                    e.preventDefault(); // Prevent the form submission
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Insufficient Funds!',
+                        text: 'The withdrawal amount exceeds your current balance.',
+                        confirmButtonColor: '#DC3545',
+                    });
+                }
+            });
+        });
+    </script>
 </div>
