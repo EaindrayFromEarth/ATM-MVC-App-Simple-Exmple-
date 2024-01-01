@@ -55,10 +55,24 @@
 </style>
 
 <div class="glass-card">
+    <form asp-action="ValidateCardAndPin" method="post">
+        <label for="cardNumber">Enter Card Number:</label>
+        <input type="text" id="cardNumber" name="cardNumber" required>
+
+        <label for="pin">Enter PIN:</label>
+        <input type="password" id="pin" name="pin" maxlength="4" required>
+
+        <button type="submit">Submit</button>
+        <span asp-validation-for="CardNumber"></span>
+        <span asp-validation-for="Pinnumber"></span>
+    </form>
+</div>
+@* 
+<div class="glass-card">
     <form asp-action="EnterCardNumber" method="post">
         <label for="cardNumber">Enter Card Number:</label>
         <input type="text" id="cardNumber" name="cardNumber" required>
         <button type="submit">Submit</button>
         <span asp-validation-for="CardNumber"></span>
     </form>
-</div>
+</div> *@
