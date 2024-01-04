@@ -30,8 +30,13 @@ public class ATMController : Controller
 
         if (cardHolder.Pinnumber == pin)
         {
+            // Store cardholder information in session
+            HttpContext.Session.SetInt32("CardHolderId", cardHolder.CardHolderId);
+            HttpContext.Session.SetString("FirstName", cardHolder.FirstName);
+            HttpContext.Session.SetString("LastName", cardHolder.LastName);
+
             // PIN is valid, navigate to the main menu
-            return RedirectToAction("MainMenu", new { cardHolder.CardHolderId });
+            return RedirectToAction("MainMenu");
         }
         else
         {
@@ -40,6 +45,30 @@ public class ATMController : Controller
             return View();
         }
     }
+
+    /*    [HttpPost]
+        public IActionResult ValidateCardAndPin(string cardNumber, string pin)
+        {
+            var cardHolder = _context.CardHolders.FirstOrDefault(ch => ch.CardNumber == cardNumber);
+
+            if (cardHolder == null)
+            {
+                ModelState.AddModelError("CardNumber", "Card Number not found");
+                return View();
+            }
+
+            if (cardHolder.Pinnumber == pin)
+            {
+                // PIN is valid, navigate to the main menu
+                return RedirectToAction("MainMenu", new { cardHolder.CardHolderId });
+            }
+            else
+            {
+                // Invalid PIN, show error message
+                ModelState.AddModelError("Pin", "Invalid PIN Number");
+                return View();
+            }
+        }*/
     public IActionResult EnterCardNumber()
     {
         return View();
@@ -104,13 +133,29 @@ public class ATMController : Controller
             return RedirectToAction("MainMenu", new { cardHolderId });
         }*/
 
-    public IActionResult MainMenu(int cardHolderId)
+    /*    public IActionResult MainMenu(int cardHolderId)
+        {
+            var cardHolder = _context.CardHolders.Find(cardHolderId);
+
+            return View(cardHolder);
+        }
+    */
+    public IActionResult MainMenu()
     {
-        var cardHolder = _context.CardHolders.Find(cardHolderId);
+        // Retrieve cardholder information from session
+        var cardHolderId = HttpContext.Session.GetInt32("CardHolderId");
+        var firstName = HttpContext.Session.GetString("FirstName");
+        var lastName = HttpContext.Session.GetString("LastName");
+
+        var cardHolder = new CardHolder
+        {
+            CardHolderId = cardHolderId.GetValueOrDefault(),
+            FirstName = firstName,
+            LastName = lastName
+        };
 
         return View(cardHolder);
     }
-
 
     public IActionResult Deposit(int cardHolderId)
     {
