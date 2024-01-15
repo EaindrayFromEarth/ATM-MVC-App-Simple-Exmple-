@@ -69,7 +69,7 @@
 
 <div class="main-menu-container">
     <h2>Welcome, @Model.FirstName @Model.LastName!</h2>
-    <p>Balance: $@Model.Balance</p>
+ @*    <p>Balance: $@Model.Balance</p> *@
 
     <div class="button-container">
         <a asp-action="Deposit" asp-route-cardHolderId="@Model.CardHolderId"><i class="icon fas fa-money-bill-wave"></i> Deposit</a>
